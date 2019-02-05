@@ -17,9 +17,9 @@ import RoomList from './components/RoomList.js';
   firebase.initializeApp(config);
 
 class App extends Component {
-  constructor(props) {
-    super(props)
-  }
+  // constructor(props) {
+  //   super(props)
+  // }
 
   render() {
     return (
