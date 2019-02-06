@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import NewRoomModal from './NewRoomModal.js';
 
  class RoomList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      rooms: []
+      rooms: [],
+      isOpen: false,
     };
     this.roomsRef = this.props.firebase.database().ref('rooms');
   }
@@ -17,6 +19,12 @@ import React, { Component } from 'react';
    });
  }
 
+ toggleModal = () => {
+  this.setState({
+    isOpen: !this.state.isOpen
+  });
+}
+
  createRoom(newRoomName) {
    this.roomsRef.push({
      name: newRoomName
@@ -26,10 +34,16 @@ import React, { Component } from 'react';
   render () {
   return (
     <section id="roomList">
+    <button onClick={this.toggleModal}>New Room
+    </button>
+    <NewRoomModal show={this.state.isOpen}
+      onClose={this.toggleModal}
+       />
     {this.state.rooms.map( room =>
       <li key={room.key}>{ room.name }</li>
     )}
     </section>
+
     );
   }
 }
