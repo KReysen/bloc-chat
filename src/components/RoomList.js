@@ -17,6 +17,11 @@ import React, { Component } from 'react';
    });
  }
 
+ createRoom(newRoomName) {
+   this.roomsRef.push({
+     name: newRoomName
+   });
+ }
 
   render () {
   return (
