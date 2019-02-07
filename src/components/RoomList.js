@@ -36,9 +36,11 @@ import NewRoomModal from './NewRoomModal.js';
     <section id="roomList">
     <button onClick={this.toggleModal}>New Room
     </button>
-    <NewRoomModal show={this.state.isOpen}
+    <NewRoomModal
+      show={this.state.isOpen}
       onClose={this.toggleModal}
-       />
+      roomsRef={this.roomsRef}
+    />
     {this.state.rooms.map( room =>
       <li key={room.key}>{ room.name }</li>
     )}
