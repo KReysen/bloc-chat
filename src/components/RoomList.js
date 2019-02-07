@@ -7,6 +7,7 @@ import NewRoomModal from './NewRoomModal.js';
     this.state = {
       rooms: [],
       isOpen: false,
+      value: ''
     };
     this.roomsRef = this.props.firebase.database().ref('rooms');
   }
@@ -19,17 +20,20 @@ import NewRoomModal from './NewRoomModal.js';
    });
  }
 
+ resetForm = () => {
+   this.setState({
+    value: ''
+   })
+ }
+
  toggleModal = () => {
+  this.resetForm();
   this.setState({
     isOpen: !this.state.isOpen
-  });
-}
 
- createRoom(newRoomName) {
-   this.roomsRef.push({
-     name: newRoomName
-   });
- }
+  });
+
+}
 
   render () {
   return (
@@ -40,6 +44,8 @@ import NewRoomModal from './NewRoomModal.js';
       show={this.state.isOpen}
       onClose={this.toggleModal}
       roomsRef={this.roomsRef}
+      value={this.state.value}
+
     />
     {this.state.rooms.map( room =>
       <li key={room.key}>{ room.name }</li>

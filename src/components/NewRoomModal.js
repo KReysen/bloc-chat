@@ -11,15 +11,19 @@ class NewRoomModal extends React.Component {
   }
 
   handleChange(event) {
+    event.preventDefault();
     this.setState({roomName: event.target.value});
   }
 
   handleSubmit(event) {
-   event.preventDefault();
-
+    event.preventDefault();
    this.props.roomsRef.push({
      name: this.state.roomName,
    });
+   this.setState({
+    roomName: ''
+   });
+   this.props.onClose();
   }
 
   render() {
@@ -31,17 +35,26 @@ class NewRoomModal extends React.Component {
       <div className="backdrop">
         <div className="modal">
           <h2>Create a new room</h2>
-          {/* <p>Enter a room name</p> */}
-          <form onSubmit={this.handleSubmit}>
+          <form
+            onSubmit={this.handleSubmit}
+
+            >
             <label>Enter a room name
             <br/>
               <input
                 type="text"
+                name="newRoomName"
+                placeholder="New Room"
                 value={this.state.roomName}
-                onChange={this.handleChange}
-              ></input>
+                onChange={this.handleChange}>
+              </input>
             </label>
-            <input type="submit" value="Create room"></input>
+            <input
+              type="submit"
+              value="Create room"
+              >
+            </input>
+
           </form>
           <button onClick={this.props.onClose}>Cancel</button>
           {/*  <button>Create room</button> */}
