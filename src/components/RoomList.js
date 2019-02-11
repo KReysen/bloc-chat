@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import NewRoomModal from './NewRoomModal.js';
+import '../styles/RoomList.css';
 
  class RoomList extends Component {
   constructor(props) {
