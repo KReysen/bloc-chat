@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import NewRoomModal from './NewRoomModal.js';
+//import '../styles/RoomList.css';
 
  class RoomList extends Component {
   constructor(props) {
@@ -38,6 +39,7 @@ import NewRoomModal from './NewRoomModal.js';
   render () {
   return (
     <section id="roomList">
+    <h1>Bloc Chat</h1>
     <button onClick={this.toggleModal}>New Room
     </button>
     <NewRoomModal

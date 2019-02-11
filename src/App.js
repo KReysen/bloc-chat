@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 import * as firebase from 'firebase';
 import RoomList from './components/RoomList.js';
-
-
+import MessageList from './components/MessageList.js';
+//import { Row, Col} from 'react-boostrap';
 
   // Initialize Firebase
   var config = {
@@ -24,8 +24,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>Bloc Chat</h1>
+
         <RoomList firebase={firebase} />
+        <MessageList firebase={firebase} />
       </div>
     );
   }
