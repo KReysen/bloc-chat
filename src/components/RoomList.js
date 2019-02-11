@@ -38,6 +38,7 @@ import NewRoomModal from './NewRoomModal.js';
   render () {
   return (
     <section id="roomList">
+    <h1>Bloc Chat</h1>
     <button onClick={this.toggleModal}>New Room
     </button>
     <NewRoomModal
