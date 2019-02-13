@@ -50,7 +50,9 @@ import '../styles/RoomList.css';
 
     />
     {this.state.rooms.map( room =>
-      <li key={room.key}>{ room.name }</li>
+      <li key={room.key} onClick={ () => this.props.setActiveRoom(room)}>
+      { room.name }
+      </li>
     )}
     </section>
 

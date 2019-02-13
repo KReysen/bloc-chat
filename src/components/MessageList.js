@@ -5,24 +5,32 @@ class MessageList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      rooms: [],
       messages: []
     };
-    this.roomsRef = this.props.firebase.database().ref('rooms');
+    this.messagesRef = this.props.firebase.database().ref('messages');
   }
 //Need to figure out how to reference the rooms by their keys and change this code
   componentDidMount() {
-   this.roomsRef.on('child_added', snapshot => {
-     const room = snapshot.val();
-      room.key = snapshot.key;
-      this.setState({ rooms: this.state.rooms.concat( room ) })
+
+    this.messagesRef.on('child_added', snapshot => {
+     const message = snapshot.val();
+      message.key = snapshot.key;
+      this.setState({ messaeges: this.state.messages.concat( message ) })
    });
   }
+  
+displayRoomName() {
+  if(this.props.activeRoom){
+    return this.props.activeRoom.name
+  } else {
+    return "Room title"
+  }
+}
 
   render() {
     return(
       <div id='messageList'>
-      <h3>Room name</h3>
+      <h3>{this.displayRoomName()}</h3>
       </div>
     );
   }
