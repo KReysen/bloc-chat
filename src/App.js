@@ -23,6 +23,8 @@ class App extends Component {
       activeRoom : {},
       user : {}
     }
+
+    this.updateUser = this.updateUser.bind(this);
   }
 
   setActiveRoom(room) {
@@ -33,6 +35,16 @@ class App extends Component {
     this.setState({user : userName });
   }
 
+  updateUser(name) {
+    firebase.auth().currentUser.updateProfile({
+      displayName: name,
+    }).then(() => {
+      this.setState({});
+    }, (error) => {
+      // An error happened.
+    });
+  }
+
   // Double check about binding setUser to this?
   render() {
     return (
@@ -41,6 +53,7 @@ class App extends Component {
           firebase={firebase}
           user={this.state.user}
           setUser={this.setUser}
+          updateUser={this.updateUser}
         />
         <MessageList
           firebase={firebase}

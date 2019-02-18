@@ -10,6 +10,7 @@ class User extends Component {
       value: ''
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
 }
 
 handleChange(event) {
@@ -17,18 +18,16 @@ handleChange(event) {
   this.setState({user: event.target.value});
 }
 
-handleSubmit() {
-  debugger
-  this.props.user.push({
-    user: this.state.user,
-  });
-  debugger
-  console.log(this.state.user);
+handleSubmit(e) {
+  e.preventDefault();
+  
+  this.props.updateUser(this.state.user);
 }
 
 signIn() {
   const provider = new this.props.firebase.auth.GoogleAuthProvider();
   this.props.firebase.auth().signInWithPopup( provider );
+  this.setState({})
 }
 
 signOut() {
@@ -46,6 +45,7 @@ signOut() {
           </button>
         </section>
         <section className="Set-user">
+          <h2>{this.props.firebase.auth().currentUser && this.props.firebase.auth().currentUser.displayName}</h2>
           <h2>Set a username
           </h2>
           <p>This name will appear when you send messages</p>
