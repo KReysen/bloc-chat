@@ -5,47 +5,58 @@ class User extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      user : '',
       isOpen: false,
+      value: ''
     };
+    this.handleChange = this.handleChange.bind(this);
 }
 
-// showModal() {
-// const modal =
-//     <div className='backdrop'>
-//       <div className='modal'>
-//         <h2>Set a userName
-//         </h2>
-//         <p>This name will appear when you send messages</p>
-//         <form>
-//           <input
-//             type="text"
-//             placeholder="enter username"
-//             >
-//           </input>
-//           <br />
-//           <input
-//             type="submit"
-//             value="Set username"
-//             >
-//           </input>
-//         </form>
-//       </div>
-//     </div>
-// }
+handleChange(event) {
+  event.preventDefault();
+  this.setState({user: event.target.value});
+}
+
+handleSubmit() {
+  debugger
+  this.props.user.push({
+    user: this.state.user,
+  });
+  debugger
+  console.log(this.state.user);
+}
 
 signIn() {
   const provider = new this.props.firebase.auth.GoogleAuthProvider();
   this.props.firebase.auth().signInWithPopup( provider );
-  const modal =
-      <div className='backdrop'>
-        <div className='modal'>
-          <h2>Set a userName
+}
+
+signOut() {
+  this.props.firebase.auth().signOut();
+}
+
+// form onSubmit needed to make state change
+  render () {
+    return (
+      <div>
+        <section className="signInButtons">
+          <button onClick={this.signIn.bind(this)}>Sign In
+          </button>
+          <button onClick={this.signOut.bind(this)}>Sign Out
+          </button>
+        </section>
+        <section className="Set-user">
+          <h2>Set a username
           </h2>
           <p>This name will appear when you send messages</p>
-          <form>
+          <form
+            onSubmit={this.handleSubmit}
+            >
             <input
               type="text"
               placeholder="enter username"
+              value={this.state.user}
+              onChange={this.handleChange}
               >
             </input>
             <br />
@@ -55,30 +66,8 @@ signIn() {
               >
             </input>
           </form>
+          </section>
         </div>
-      </div>
-  return modal;
-}
-
-signOut() {
-  this.props.firebase.auth().signOut();
-}
-
-
-
-onClick() {
-  this.signIn();
-  this.showModal();
-}
-// don't know what actually needs to be rendered here!!
-  render () {
-    return (
-      <div className="signInButtons">
-      <button onClick={this.signIn.bind(this)}>Sign In
-      </button>
-      <button onClick={this.signOut.bind(this)}>Sign Out
-      </button>
-      </div>
     )
   }
 }

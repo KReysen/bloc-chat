@@ -1,4 +1,4 @@
-.backdrop {
+/* .backdrop {
   position: fixed;
   top: 0;
   left: 0;
@@ -15,10 +15,11 @@
   top:50%;
   left:50%;
   transform: translate(-50%,-50%);
-}
+} */
 
-.signInButtons {
+/* .signInButtons {
   z-index: 5;
   position: absolute;
   padding-left: 2.75em;
-}
+  padding-top: 20em;
+} */
