@@ -21,6 +21,7 @@ class App extends Component {
     super(props)
     this.state = {
       activeRoom : {},
+      user : {}
     }
   }
 
@@ -28,11 +29,18 @@ class App extends Component {
     this.setState({activeRoom : room });
   }
 
+  setUser(userName) {
+    this.setState({user : userName });
+  }
+
+  // Double check about binding setUser to this?
   render() {
     return (
       <div className="App">
         <User
           firebase={firebase}
+          user={this.state.user}
+          setUser={this.setUser}
         />
         <RoomList
           firebase={firebase}

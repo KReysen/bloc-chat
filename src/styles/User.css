@@ -16,3 +16,8 @@
   left:50%;
   transform: translate(-50%,-50%);
 }
+
+#signInButtons {
+  z-index: 10;
+  position: relative;
+}
