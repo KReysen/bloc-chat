@@ -31,14 +31,8 @@ class App extends Component {
     this.setState({activeRoom : room });
   }
 
-  setUser(name) {
-    firebase.auth().currentUser.updateProfile({
-      displayName: name,
-    }).then(() => {
-      this.setState({user : name})
-    }, () => {
-      // An error happened.
-    });
+  setUser(user) {
+    this.setState({user: user});
   }
 
 
@@ -48,19 +42,19 @@ class App extends Component {
         <User
           firebase={firebase}
           user={this.state.user}
-          setUser={this.setUser}
+          setUser={this.setUser.bind(this)}
         />
         <MessageList
           firebase={firebase}
           activeRoom={this.state.activeRoom}
+          user={this.state.user}
           />
         <RoomList
           firebase={firebase}
           activeRoom={this.state.activeRoom}
           setActiveRoom={this.setActiveRoom.bind(this)}
+          user={this.state.user}
           />
-
-
       </div>
     );
   }

@@ -4,9 +4,7 @@ import '../styles/User.css';
 class User extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      // user : '',
-    };
+
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
 }
@@ -29,44 +27,43 @@ handleSubmit(e) {
 
 signIn() {
   const provider = new this.props.firebase.auth.GoogleAuthProvider();
-  this.props.firebase.auth().signInWithPopup( provider );
-  this.setState({})
+  this.props.firebase.auth().signInWithPopup( provider ).then((result) => {
+    var user = result.user;
+    this.props.setUser(user);
+  });
+  // this.setState({})
 }
 
 signOut() {
-  this.props.firebase.auth().signOut();
-  debugger
-  this.setState({user : 'Guest'})
-  debugger
+  this.props.firebase.auth().signOut().then(() => {
+    this.props.setUser(null);
+  });
 }
 
 getDisplayName() {
   if (this.props.firebase.auth().currentUser && this.props.firebase.auth().currentUser.displayName) {
-    return <h2>Hello {this.props.firebase.auth().currentUser && this.props.firebase.auth().currentUser.displayName}</h2>
+    return <h2>Hello, {this.props.user.displayName}</h2>
   } else {
     return <h2>Hello, Guest</h2>
   }
 }
 
-// form onSubmit needed to make state change
+
   render () {
     return (
       <div id="user">
         <section className="signInButtons">
-
-            <button onClick={this.signIn.bind(this)}>Sign In
-            </button>
-            <button onClick={this.signOut.bind(this)}>Sign Out
-            </button>
-            {this.getDisplayName()}
+          <button onClick={this.signIn.bind(this)}>Sign In
+          </button>
+          <button onClick={this.signOut.bind(this)}>Sign Out
+          </button>
+          {this.getDisplayName()}
         </section>
         <section className="Set-user">
           <h3>Set a username
           </h3>
           <p>This name will appear when you send messages</p>
-          <form
-            onSubmit={this.handleSubmit}
-            >
+          <form onSubmit={this.handleSubmit}>
             <input
               type="text"
               placeholder="enter username"
