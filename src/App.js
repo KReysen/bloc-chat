@@ -21,31 +21,27 @@ class App extends Component {
     super(props)
     this.state = {
       activeRoom : {},
-      user : {}
+      user : 'Guest'
     }
 
-    this.updateUser = this.updateUser.bind(this);
+    this.setUser = this.setUser.bind(this);
   }
 
   setActiveRoom(room) {
     this.setState({activeRoom : room });
   }
 
-  setUser(userName) {
-    this.setState({user : userName });
-  }
-
-  updateUser(name) {
+  setUser(name) {
     firebase.auth().currentUser.updateProfile({
       displayName: name,
     }).then(() => {
-      this.setState({});
-    }, (error) => {
+      this.setState({user : name})
+    }, () => {
       // An error happened.
     });
   }
 
-  // Double check about binding setUser to this?
+
   render() {
     return (
       <div className="App">
@@ -53,7 +49,6 @@ class App extends Component {
           firebase={firebase}
           user={this.state.user}
           setUser={this.setUser}
-          updateUser={this.updateUser}
         />
         <MessageList
           firebase={firebase}
