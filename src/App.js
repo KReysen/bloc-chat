@@ -21,7 +21,7 @@ class App extends Component {
     super(props)
     this.state = {
       activeRoom : {},
-      user : 'Guest'
+      user : ''
     }
 
     this.setUser = this.setUser.bind(this);
@@ -34,7 +34,6 @@ class App extends Component {
   setUser(user) {
     this.setState({user: user});
   }
-
 
   render() {
     return (

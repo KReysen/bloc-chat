@@ -4,10 +4,13 @@ import '../styles/User.css';
 class User extends Component {
   constructor(props) {
     super(props);
-
+    this.state = {
+      show: false
+    }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
 }
+
 componentDidMount() {
   this.props.firebase.auth().onAuthStateChanged( user => {
   this.props.setUser(user);
@@ -17,6 +20,12 @@ componentDidMount() {
 handleChange(event) {
   event.preventDefault();
   this.setState({user: event.target.value});
+}
+
+setDisplayName (name) {
+  this.setState ({
+  displayName : name
+  })
 }
 
 handleSubmit(e) {
@@ -31,7 +40,6 @@ signIn() {
     var user = result.user;
     this.props.setUser(user);
   });
-  // this.setState({})
 }
 
 signOut() {
@@ -42,42 +50,43 @@ signOut() {
 
 getDisplayName() {
   if (this.props.firebase.auth().currentUser && this.props.firebase.auth().currentUser.displayName) {
+
     return <h2>Hello, {this.props.user.displayName}</h2>
   } else {
-    return <h2>Hello, Guest</h2>
+    return <h2>Hello, Guest! Sign in to post messages!</h2>
   }
 }
 
-
   render () {
+    // const userNameModal =
+    // <section className="Set-user">
+    //   <h3>Set a username
+    //   </h3>
+    //   <p>This name will appear when you send messages</p>
+    //   <form onSubmit={this.handleSubmit}>
+    //     <input
+    //       type="text"
+    //       placeholder="enter username"
+    //       onChange={this.handleChange}
+    //       >
+    //     </input>
+    //     <br />
+    //     <input
+    //       type="submit"
+    //       value="Set username"
+    //       >
+    //     </input>
+    //   </form>
+    //   </section>;
     return (
       <div id="user">
-        <section className="signInButtons">
-          <button onClick={this.signIn.bind(this)}>Sign In
-          </button>
-          <button onClick={this.signOut.bind(this)}>Sign Out
+        <section className="signInOutButtons">
+          <button onClick={ this.props.user ? this.signOut.bind(this) : this.signIn.bind(this) }>
+          { this.props.user ? 'Not you? Sign Out' : 'Sign In' }
           </button>
           {this.getDisplayName()}
         </section>
-        <section className="Set-user">
-          <h3>Set a username
-          </h3>
-          <p>This name will appear when you send messages</p>
-          <form onSubmit={this.handleSubmit}>
-            <input
-              type="text"
-              placeholder="enter username"
-              onChange={this.handleChange}
-              >
-            </input>
-            <br />
-            <input
-              type="submit"
-              value="Set username"
-              >
-            </input>
-          </form>
-          </section>
+
         </div>
     )
   }
