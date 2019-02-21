@@ -17,22 +17,19 @@ componentDidMount() {
 });
 }
 
-handleChange(event) {
-  event.preventDefault();
-  this.setState({user: event.target.value});
-}
+// Functions for handling modal to set username, which I'm not sure is even
+// necessary, as username is being handled by firebase
+// handleChange(event) {
+//   event.preventDefault();
+//   this.setState({user: event.target.value});
+// }
+//
 
-setDisplayName (name) {
-  this.setState ({
-  displayName : name
-  })
-}
-
-handleSubmit(e) {
-  e.preventDefault();
-  this.props.setUser(this.state.user);
-  this.setState({})
-}
+// handleSubmit(e) {
+//   e.preventDefault();
+//   this.props.setUser(this.state.user);
+//   this.setState({})
+// }
 
 signIn() {
   const provider = new this.props.firebase.auth.GoogleAuthProvider();
@@ -50,7 +47,6 @@ signOut() {
 
 getDisplayName() {
   if (this.props.firebase.auth().currentUser && this.props.firebase.auth().currentUser.displayName) {
-
     return <h2>Hello, {this.props.user.displayName}</h2>
   } else {
     return <h2>Hello, Guest! Sign in to post messages!</h2>
@@ -86,7 +82,6 @@ getDisplayName() {
           </button>
           {this.getDisplayName()}
         </section>
-
         </div>
     )
   }
