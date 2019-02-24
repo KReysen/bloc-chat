@@ -38,6 +38,9 @@ import '../styles/RoomList.css';
 
   render () {
   return (
+    <div className="container">
+    <div className="row">
+    <div className="col-sm-4">
     <section id="roomList">
     <h1>Bloc Chat</h1>
     <button onClick={this.toggleModal}>New Room
@@ -55,7 +58,9 @@ import '../styles/RoomList.css';
       </li>
     )}
     </section>
-
+    </div>
+    </div>
+    </div>
     );
   }
 }

@@ -57,7 +57,6 @@ class NewRoomModal extends React.Component {
 
           </form>
           <button onClick={this.props.onClose}>Cancel</button>
-          {/*  <button>Create room</button> */}
         </div>
       </div>
     );
