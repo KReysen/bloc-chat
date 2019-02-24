@@ -47,9 +47,9 @@ signOut() {
 
 getDisplayName() {
   if (this.props.firebase.auth().currentUser && this.props.firebase.auth().currentUser.displayName) {
-    return <h2>Hello, {this.props.user.displayName}</h2>
+    return <h3>Hello, {this.props.user.displayName}</h3>
   } else {
-    return <h2>Hello, Guest! Sign in to post messages!</h2>
+    return <h3>Hello, Guest! Sign in to post messages!</h3>
   }
 }
 
@@ -76,11 +76,11 @@ getDisplayName() {
     //   </section>;
     return (
       <div id="user">
-        <section className="signInOutButtons">
-          <button onClick={ this.props.user ? this.signOut.bind(this) : this.signIn.bind(this) }>
-          { this.props.user ? 'Not you? Sign Out' : 'Sign In' }
-          </button>
+        <section className="greetHeader">
           {this.getDisplayName()}
+          <p  id="signInText" onClick={ this.props.user ? this.signOut.bind(this) : this.signIn.bind(this) }>
+          { this.props.user ? 'Not you? Sign Out' : 'Sign In' }
+          </p>
         </section>
         </div>
     )

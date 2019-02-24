@@ -23,3 +23,11 @@
   padding-left: 2.75em;
   padding-top: 20em;
 } */
+.greetHeader {
+  background-color:lightgrey;
+  padding:1px;
+}
+
+#signInText {
+  cursor: pointer;
+}

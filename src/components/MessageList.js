@@ -56,7 +56,7 @@ getCurrentMessages() {
     return(
       <div id='messageList'>
         <section id='messageDisplay'>
-          <h3>{this.displayRoomName()}</h3>
+          <h3 id="roomName">{this.displayRoomName()}</h3>
           <ul>
           {
             this.getCurrentMessages().map((message) => {
