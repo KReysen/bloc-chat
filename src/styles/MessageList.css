@@ -2,18 +2,25 @@
 
 }
 
-li {
-
-}
-
-#roomName {
-
-}
-
 #messageList {
-  left: 25%;
-  width:75%;
+  float: left;
+  width: 75%;
   height: 100vh;
+  text-align:left;
+}
+
+#messageDisplay h3 {
+  padding-left: 2em;
+}
+#messageDisplay ul {
+  background-color: lightgrey;
+  padding: 1em;
+}
+
+#messageDisplay li {
+  background-color: white;
+  padding: 1em;
+  list-style:none;
 }
 
 #newMessage {

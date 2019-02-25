@@ -77,10 +77,11 @@ getDisplayName() {
     return (
       <div id="user">
         <section className="greetHeader">
-          {this.getDisplayName()}
+
           <p  id="signInText" onClick={ this.props.user ? this.signOut.bind(this) : this.signIn.bind(this) }>
           { this.props.user ? 'Not you? Sign Out' : 'Sign In' }
           </p>
+            {this.getDisplayName()}
         </section>
         </div>
     )

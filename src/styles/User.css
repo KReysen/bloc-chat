@@ -28,6 +28,16 @@
   padding:1px;
 }
 
+.greetHeader p {
+  float: right;
+  display: block;
+  text-align: center;
+}
+
 #signInText {
   cursor: pointer;
+}
+
+#signInText:hover {
+  color: blue;
 }

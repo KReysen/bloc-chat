@@ -10,6 +10,7 @@ class MessageList extends Component {
     };
     this.messagesRef = this.props.firebase.database().ref('messages');
     this.createNewMessage = this.createNewMessage.bind(this);
+    this.getDate = this.getDate.bind(this);
   }
 
   componentDidMount() {
@@ -21,7 +22,6 @@ class MessageList extends Component {
   }
 
 createNewMessage(newMessage) {
-  debugger
   const newmsg = {
     content: newMessage,
     roomId: this.props.activeRoom.key,
@@ -30,7 +30,7 @@ createNewMessage(newMessage) {
   }
     this.messagesRef.push(newmsg)
     debugger
-    this.setState({ newMessage: ''});
+    this.setState({});
 }
 
 handleChange(e) {
@@ -43,6 +43,10 @@ displayRoomName() {
   } else {
     return "Bloc Chat"
   }
+}
+
+getDate() {
+
 }
 
 getCurrentMessages() {
@@ -61,7 +65,11 @@ getCurrentMessages() {
           {
             this.getCurrentMessages().map((message) => {
               return (
-                <li key={message.sentAt}>{message.content}</li>
+                <li key={message.sentAt}>
+                  <div className="userName">{message.username}</div>
+                  <div className="msgContent">{message.content}</div>
+
+                </li>
               )
             })
           }
