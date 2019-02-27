@@ -21,7 +21,9 @@ class MessageList extends Component {
    });
   }
 
-createNewMessage(newMessage) {
+createNewMessage(e, newMessage) {
+  e.preventDefault();
+
   const newmsg = {
     content: newMessage,
     roomId: this.props.activeRoom.key,
@@ -29,8 +31,9 @@ createNewMessage(newMessage) {
     username: this.props.user.displayName,
   }
     this.messagesRef.push(newmsg)
-    debugger
-    this.setState({});
+    this.setState({
+      newMessage: ''
+    });
 }
 
 handleChange(e) {
@@ -78,7 +81,7 @@ getCurrentMessages() {
         <section id='newMessage'>
           <form
 
-            onSubmit={ (e) => this.createNewMessage(this.state.newMessage) }
+            onSubmit={ (e) => this.createNewMessage(e, this.state.newMessage) }
           >
             <input
               onChange ={ (e) => this.handleChange(e) }
